@@ -20,7 +20,7 @@
                     <p>{{ post.text|linebreaksbr|urlize }}</p>
                 </div>
                 <div class="date">          
-                    <p><b> — {{ post.author|default_if_none:"Anonymous User"}}</b><div class="time">{{ post.published_date|date:"j F Y @ h:i A" }}
+                    <p><b> — {{ post.author|default_if_none:"Anonymous User"}}</b><div class="time">{{ post.published_date|date:"Y m j, H:i" }}
                     ({{ post.published_date|timesince }} ago)</div></p>
                 </div>
             </div>

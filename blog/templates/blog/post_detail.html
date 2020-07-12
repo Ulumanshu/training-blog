@@ -39,7 +39,7 @@
             <div class="comment">
                 <div class="comment-display-flex">
                     <p><b>— {{ comment.author }}</b></p>
-                    <div class="comment-time">{{ comment.created_date|date:"j F Y, h:i A" }}</div>
+                    <div class="comment-time">{{ comment.created_date|date:"Y m j, H:i" }}</div>
                 </div>
                 <p>{{ comment.text|linebreaks }}</p>
                 
