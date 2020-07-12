@@ -1,7 +1,7 @@
 # Training Blog
 Powered by Django & Python
 
-## General idea of this Project
+## General idea
 
 This is an Open Blog for everyone. Communication with other using "POST".
 Login with your SuperUser.
@@ -9,26 +9,26 @@ Go to * [Live](http://tejxv.pythonanywhere.com/) to see the result and write com
 
 ## Usefull Commands
 
-* Install virtual environment
+* Install virtual environment<br />
 `$ pip install pipenv
 
-* Run virtual environment
+* Run virtual environment<br />
 `$ pipenv shell
 
-* Install pipfile, pipfile.lock, requirements.txt at once
+* Install pipfile, pipfile.lock, requirements.txt at once<br />
 `$ pipenv install
 
-* Check if all requirements are installed
+* Check if all requirements are installed<br />
 `$ pip list
 
-* To start project you must make migrations
-`$ python (or python3) manage.py makemigrations
+* To start project you must make migrations<br />
+`$ python (or python3) manage.py makemigrations<br />
 `$ python (or python3) manage.py migrate (will migrate all at once)
 
-* Create SuperUser (admin)
+* Create SuperUser (admin)<br />
 `$ python mange.py createsuperuser
 
-* Run server
+* Run server<br />
 `$ python mange.py runserver
 
 ## Links
