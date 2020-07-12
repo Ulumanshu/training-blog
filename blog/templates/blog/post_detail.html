@@ -12,7 +12,7 @@
                 {% if post.author == user %}
                 <div class="delete-popup">
                     <p><a class="btn btn-outline-danger mr-2" href="{% url 'post_delete' pk=post.pk %}">Delete Post</a>
-                        <a class="btn btn-outline-secondary" href="{% url 'post_edit' pk=post.pk %}">Edit</a></p>
+                        <a class="btn_btn-outline-secondary" href="{% url 'post_edit' pk=post.pk %}">Edit</a></p>
                 </div>
                 {% endif %}
                 <div class="text">
