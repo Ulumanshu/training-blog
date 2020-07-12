@@ -39,6 +39,22 @@ a:hover {
     text-decoration: none;
 }
 
+.btn_btn-outline-secondary{
+    color: blue;
+    border-radius: 10%;
+    padding: 7px;
+    border: 1px solid blue;
+
+
+}
+.btn_btn-outline-secondary:hover{
+    color: white;
+    background-color: blue;
+    border-radius: 10%;
+    padding: 7px;
+    border: 1px solid blue;
+
+}
 h1 {
     font-family: 'Neue Montreal';
     font-style: normal;
