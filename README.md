@@ -1,7 +1,7 @@
 # Training Blog
 Powered by Django & Python
 
-## General idea
+## General idea of this Project
 
 This is an Open Blog for everyone. Communication with other using "POST".
 Login with your SuperUser.
