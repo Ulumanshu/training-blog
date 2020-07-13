@@ -5,7 +5,7 @@ Powered by Django & Python
 
 This is an Open Blog for everyone. Communication with other using "POST".<br />
 Login with your SuperUser.<br />
-Go to * [Live](http://tejxv.pythonanywhere.com/) to see the result and write comments.
+Go to * [Live](http://b5277.k.dedikuoti.lt:9999/) to see the result and write comments.
 
 ## Usefull Commands
 
@@ -33,5 +33,5 @@ Go to * [Live](http://tejxv.pythonanywhere.com/) to see the result and write com
 
 ## Links
 
-* [Live](http://tejxv.pythonanywhere.com/)
+* [Live](http://b5277.k.dedikuoti.lt:9999/)
 
