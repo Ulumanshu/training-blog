@@ -33,7 +33,7 @@ Older version apt-get:
 * Check if all requirements are installed<br />
 `$ pip list`
 
-![Dependencies](img/pip_list.jpg?raw=true "Pip list")
+![Dependencies](img/pip_list.png?raw=true "Pip list")
 
 * To start project you must make migrations<br />
 `$ python (or python3) manage.py makemigrations`<br />
