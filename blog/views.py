@@ -16,9 +16,9 @@ class PostListView(ListView):
     ordering = ['-published_date']
 
     def get(self, request):
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-        return render(request, 'blog/post_list.html', {'posts': posts})
+        posts = Post.objects.all().order_by('-published_date')
 
+        return render(request, 'blog/post_list.html', {'posts': posts})    
 
 class PostDetailView(DetailView):
     model = Post
@@ -31,6 +31,14 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 
+    def post(self, request):
+        if request.method == "POST":
+            form = PostForm(data=request.POST)
+            if form.is_valid():
+                posts = Post.objects.all().order_by('-published_date')
+                return render(request, 'blog/post_list.html', {'posts': posts})
+            
+    
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
