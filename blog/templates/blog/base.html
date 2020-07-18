@@ -34,17 +34,13 @@
  <nav>
     {% if user.is_authenticated %}
     <div><a href="{% url 'post_new' %}" class="logout-btn"><i class="fas fa-plus-circle"></i> POST</a></div>
-
-
     <div><a href="{% url 'post_list' %}" class="logout-btn"><i class="fas fa-play"></i> POSTS</a></div>
     <div><a href="{% url 'blog-about' %}" class="logout-btn"><i class="fas fa-info-circle"></i> ABOUT</a></div>
-
     <div><a href="/logout" class="logout-btn"><i class="fas fa-door-open"></i> LOGOUT</a></div>
     {% elif user.is_anonymous %}
     <div><a href="{% url 'post_new' %}" class="logout-btn"><i class="fas fa-plus-circle"></i> POST</a></div>
-
+    <div><a href="{% url 'post_list' %}" class="logout-btn"><i class="fas fa-play"></i> POSTS</a></div>
     <div><a href="{% url 'blog-about' %}" class="logout-btn"><i class="fas fa-info-circle"></i> ABOUT</a></div>
-
     <div><a href="/login" class="logout-btn"><i class="fas fa-door-open"></i> LOGIN</a></div>
 	{% endif %}
 </nav>
@@ -53,7 +49,6 @@
 <div class="cposts">
     <div class="greetings-banner">
         <h2><a href="/login">LOGIN</a> / <a href="/register">CREATE</a> ACCOUNT</h2>
-
         <div class="text"><p>Neprisidaryk gėdos!!! Būk mandagus</p>
             <a class="github-button" href="https://github.com/Ulumanshu/training-blog" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" aria-label="Follow @tejxv on GitHub"> Open on GitHub </a></div>
         </div>

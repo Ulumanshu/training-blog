@@ -6,6 +6,7 @@ from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (ListView, DetailView, DeleteView, CreateView, UpdateView)
+from django.http import HttpResponse
 
 
 
@@ -14,6 +15,10 @@ class PostListView(ListView):
     template_name = 'blog/base.html'
     context_object_name = 'posts'
     ordering = ['-published_date']
+
+    def get(self, request):
+        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return render(request, 'blog/post_list.html', {'posts': posts})
 
 
 class PostDetailView(DetailView):
@@ -46,23 +51,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         post = self.get_object()
         if self.request.user == post.author:
             return True
-        return False        
-
-
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Post
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.author:
-            return True
-        return False 
-
-
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
-
+        return False
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post

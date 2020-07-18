@@ -9,6 +9,7 @@
 </div>
 {% endif %}
 
+{% if user.is_authenticated %}
 {% for post in posts %}
 
 
@@ -55,4 +56,5 @@
     </div>
 </div>
 {% endfor %}
+{% endif %}
 {% endblock %}
