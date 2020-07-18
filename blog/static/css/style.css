@@ -640,3 +640,18 @@ label {
         white-space: nowrap;
     }
 }
+ul li {
+    display: inline-block;
+    padding: 30px 40px;
+}
+
+.Name {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+ul li:hover .Name{
+    display: block;
+    color: white;
+    position: absolute;
+}
