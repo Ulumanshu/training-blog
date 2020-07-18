@@ -28,6 +28,17 @@ Go to * [Live](http://b5277.k.dedikuoti.lt:9999/) to see the result and write co
 * Create SuperUser (admin)<br />
 `$ python manage.py createsuperuser`
 
+* Run docker locally<br />
+`$ docker-compose up -d`
+
+* List running docker containers
+`$ sudo docker ps`
+
+![Alt text](Container.png?raw=true "Container List")
+
+* Run server<br />
+`$ python manage.py runserver`
+
 ## Install Docker
 
 Before running the server, install docker.
@@ -39,17 +50,6 @@ Latest version(not necessary):
 Older version apt-get:
 * [installing docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
 * `$ sudo apt-get install docker-compose`
-
-* Run docker locally<br />
-`$ docker-compose up -d`
-
-* List running docker containers
-`$ sudo docker ps`
-
-![Alt text](Container.png?raw=true "Container List")
-
-* Run server<br />
-`$ python manage.py runserver`
 
 ## Links
 
