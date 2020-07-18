@@ -46,7 +46,7 @@ Older version apt-get:
 * List running docker containers
 `$ sudo docker ps`
 
-![Alt text](src/img/Container.png?raw=true "Container List")
+![Alt text](Container.png?raw=true "Container List")
 
 * Run server<br />
 `$ python manage.py runserver`
