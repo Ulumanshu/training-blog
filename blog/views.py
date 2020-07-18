@@ -61,7 +61,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    visits_count = request.session.get('visits_count', 0)
+    request.session['visits_count'] = visits_count + 1
+    context = {
+    'visits_count': visits_count,
+        'posts': posts,
+    }
+
+    return render(request, 'blog/post_list.html', context=context)
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
@@ -90,7 +97,14 @@ def add_comment_to_post(request, pk):
 
 
 def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+    visits_count = request.session.get('visits_count', 0)
+    request.session['visits_count'] = visits_count + 1
+    context = {
+    'visits_count': visits_count,
+    'title': 'About',
+    }
+
+    return render(request, 'blog/about.html', context=context)
 
 #      -- using class based views instead of function based --
 #

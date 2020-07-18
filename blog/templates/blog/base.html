@@ -40,6 +40,7 @@
     <div><a href="{% url 'blog-about' %}" class="logout-btn"><i class="fas fa-info-circle"></i> ABOUT</a></div>
 
     <div><a href="/logout" class="logout-btn"><i class="fas fa-door-open"></i> LOGOUT</a></div>
+     <div><p>You have visited this page {{ visits_count }}</p></div>
     {% elif user.is_anonymous %}
     <div><a href="{% url 'post_new' %}" class="logout-btn"><i class="fas fa-plus-circle"></i> POST</a></div>
 
