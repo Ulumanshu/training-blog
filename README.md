@@ -21,6 +21,8 @@ Go to * [Live](http://b5277.k.dedikuoti.lt:9999/) to see the result and write co
 * Check if all requirements are installed<br />
 `$ pip list`
 
+![Dependencies](img/pip_list.jpg?raw=true "Pip list")
+
 * To start project you must make migrations<br />
 `$ python (or python3) manage.py makemigrations`<br />
 `$ python (or python3) manage.py migrate (will migrate all at once)`
