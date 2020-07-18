@@ -26,10 +26,10 @@ Go to * [Live](http://b5277.k.dedikuoti.lt:9999/) to see the result and write co
 `$ python (or python3) manage.py migrate (will migrate all at once)`
 
 * Create SuperUser (admin)<br />
-`$ python mange.py createsuperuser`
+`$ python manage.py createsuperuser`
 
 * Run server<br />
-`$ python mange.py runserver`
+`$ python manage.py runserver`
 
 ## Links
 
