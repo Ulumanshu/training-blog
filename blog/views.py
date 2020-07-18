@@ -17,7 +17,10 @@ class PostListView(ListView):
 
     def get(self, request):
         posts = Post.objects.all().order_by('-published_date')
-
+        if self.request.user.is_authenticated:
+            posts = Post.objects.all().order_by('-published_date')
+        else:
+            posts = Post.objects.filter(public=True).order_by('-published_date')
         return render(request, 'blog/post_list.html', {'posts': posts})    
 
 class PostDetailView(DetailView):
@@ -35,7 +38,10 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         if request.method == "POST":
             form = PostForm(data=request.POST)
             if form.is_valid():
-                posts = Post.objects.all().order_by('-published_date')
+                if self.request.user.is_authenticated:
+                    posts = Post.objects.all().order_by('-published_date')
+                else:
+                    posts = Post.objects.filter(public=True).order_by('-published_date')
                 return render(request, 'blog/post_list.html', {'posts': posts})
             
     
