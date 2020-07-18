@@ -9,7 +9,6 @@ from django.views.generic import (ListView, DetailView, DeleteView, CreateView, 
 from django.http import HttpResponse
 
 
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/base.html'
@@ -23,12 +22,12 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'blog/post_detail.html'   
- 
+    template_name = 'blog/post_detail.html'
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title','text']
+    fields = ['public', 'title', 'text']
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 
@@ -39,7 +38,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title','text']
+    fields = ['title', 'text']
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 
@@ -53,6 +52,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
@@ -62,6 +62,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
 
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -119,6 +120,4 @@ def about(request):
 #             return redirect('post_detail', pk=post.pk)
 #     else:
 #         form = PostForm(instance=post)
-#     return render(request, 'blog/post_edit.html', {'form': form})  
-
-    
+#     return render(request, 'blog/post_edit.html', {'form': form})

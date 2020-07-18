@@ -6,6 +6,7 @@ from django.urls import reverse
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    public = models.BooleanField(default=False, verbose_name="Should post be public?")
     title = models.CharField(max_length=20)
     text = models.TextField(max_length=1000)
     created_date = models.DateTimeField(default=timezone.now)
