@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (ListView, DetailView, DeleteView, CreateView, UpdateView)
 from django.http import HttpResponse
+from django import forms
+from django.contrib.auth.admin import UserAdmin
 
 
 class PostListView(ListView):
@@ -15,7 +17,7 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-published_date']
 
-    def get(self, request):       
+    def get(self, request):
         visits_count = request.session.get('visits_count', 0)
         request.session['visits_count'] = visits_count + 1
         # Render the HTML template passing data in the context.            
@@ -46,16 +48,20 @@ class PostCreateView(LoginRequiredMixin, CreateView):
             request.session['visits_count'] = visits_count + 1
             form = PostForm(data=request.POST)
             if form.is_valid():
-                form.save()
-                if self.request.user.is_authenticated:
-                    posts = Post.objects.all().order_by('-published_date')
+                if request.user.has_perm('blog.post.can_add_post'):
+                    form.save()
+                    if self.request.user.is_authenticated:
+                        posts = Post.objects.all().order_by('-published_date')
+                    else:
+                        posts = Post.objects.filter(public=True).order_by('-published_date')
+                    context = {
+                        'visits_count': visits_count,
+                        'posts': posts,
+                    }
+                    return render(request, 'blog/post_list.html', context=context)
                 else:
-                    posts = Post.objects.filter(public=True).order_by('-published_date')
-                context = {
-                    'visits_count': visits_count,
-                    'posts': posts,
-                }    
-                return render(request, 'blog/post_list.html', context=context)
+                    return render(request, 'blog/bad.html')
+
             
     
     def form_valid(self, form):
