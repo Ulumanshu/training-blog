@@ -5,6 +5,7 @@ from .views import PostListView, PostCreateView, PostDetailView, PostUpdateView,
 from rest_framework import routers
 
 
+app_name = 'api'
 router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet)
 
