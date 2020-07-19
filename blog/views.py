@@ -16,6 +16,14 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('title')
     serializer_class = PostSerializer
 
+    def get_queryset(self):
+        queryset = Post.objects.all()
+        title = self.request.query_params.get('title', None)
+        if title is not None:
+            queryset = queryset.filter(title=title)
+        return queryset
+
+
 class PostListView(ListView):
     model = Post
     template_name = 'blog/base.html'
