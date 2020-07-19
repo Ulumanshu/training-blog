@@ -7,7 +7,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (ListView, DetailView, DeleteView, CreateView, UpdateView)
 from django.http import HttpResponse
+from rest_framework import viewsets
+from .models import Post
+from .serializers import PostSerializer
 
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('name')
+    serializer_class = PostSerializer
 
 class PostListView(ListView):
     model = Post
