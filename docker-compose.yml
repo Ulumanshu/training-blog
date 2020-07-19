@@ -9,6 +9,7 @@ services:
        MYSQL_ROOT_PASSWORD: admin
     volumes:
       - db_data:/var/lib/mysql
+      - ./mysql-dump:/docker-entrypoint-initdb.d
     restart: always
     ports:
       - '127.0.0.1:3307:3306'

@@ -15,10 +15,19 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-published_date']
 
-    def get(self, request):
-        posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-        return render(request, 'blog/post_list.html', {'posts': posts})
-
+    def get(self, request):       
+        visits_count = request.session.get('visits_count', 0)
+        request.session['visits_count'] = visits_count + 1
+        # Render the HTML template passing data in the context.            
+        if self.request.user.is_authenticated:
+            posts = Post.objects.all().order_by('-published_date')
+        else:
+            posts = Post.objects.filter(public=True).order_by('-published_date')
+        context = {
+            'visits_count': visits_count,
+            'posts': posts,
+        }    
+        return render(request, 'blog/post_list.html', context=context)
 
 class PostDetailView(DetailView):
     model = Post
@@ -31,6 +40,24 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 
+    def post(self, request):
+        if request.method == "POST":
+            visits_count = request.session.get('visits_count', 0)
+            request.session['visits_count'] = visits_count + 1
+            form = PostForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                if self.request.user.is_authenticated:
+                    posts = Post.objects.all().order_by('-published_date')
+                else:
+                    posts = Post.objects.filter(public=True).order_by('-published_date')
+                context = {
+                    'visits_count': visits_count,
+                    'posts': posts,
+                }    
+                return render(request, 'blog/post_list.html', context=context)
+            
+    
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
