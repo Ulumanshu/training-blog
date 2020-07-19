@@ -22,6 +22,7 @@ sqlparse = "==0.3.0"
 urllib3 = "==1.25.8"
 Django = "==3.0.2"
 mysqlclient = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.8"
