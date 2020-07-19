@@ -13,7 +13,7 @@ from .serializers import PostSerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('comments')
+    queryset = Post.objects.all().order_by('title')
     serializer_class = PostSerializer
 
 class PostListView(ListView):
