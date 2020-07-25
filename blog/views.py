@@ -5,8 +5,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (ListView, DetailView, DeleteView, CreateView, UpdateView)
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework import viewsets
 from .models import Post
 from .serializers import PostSerializer
@@ -22,7 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
         if title is not None:
             queryset = queryset.filter(title=title)
         return queryset
-
+    
 
 class PostListView(ListView):
     model = Post
