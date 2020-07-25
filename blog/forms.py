@@ -3,9 +3,15 @@ from .models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        super(PostForm, self).__init__(*args, **kwargs)
+    
     class Meta:
         model = Post
         fields = ('public', 'title', 'text')
+        exclude = ('user',)
 
     def clean_text(self):
         text  = self.cleaned_data.get('text')
@@ -17,6 +23,12 @@ class PostForm(forms.ModelForm):
                 text = text.replace(word, '*' * len(word))
 
         return text
+
+    def save(self):
+        obj = super(PostForm, self).save(commit=False)
+        obj.author = self.user
+        obj.save()
+        return obj
 
 
 class CommentForm(forms.ModelForm):

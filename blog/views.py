@@ -59,8 +59,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         if request.method == "POST":
             visits_count = request.session.get('visits_count', 0)
             request.session['visits_count'] = visits_count + 1
-            form = PostForm(data=request.POST)
-            if form.is_valid():
+            form = PostForm(data=request.POST, user=request.user)
+            if form.is_valid():                
                 form.save()
                 if self.request.user.is_authenticated:
                     posts = Post.objects.all().order_by('-published_date')
