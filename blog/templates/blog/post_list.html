@@ -29,6 +29,13 @@
             	<div class="text-left" onclick="location.href='{% url 'post_detail' pk=post.pk %}';" style="cursor: pointer;">
                     <div class="post_title">{{ post.title|upper }}</div><div class="post_no">#{{ post.pk }}</div>
                 </div>
+                <div
+                    class="blog_graph"
+                    data-chart-type="{{ post.chart_type }}"
+                    data-chart-date_from="{{ post.date_from }}"
+                >
+                    <p>Loading!!!</p>
+                </div>
                 <div class="text">
                     <p>{{ post.text|truncatechars:200|linebreaksbr|urlize }}</p>
                 </div>

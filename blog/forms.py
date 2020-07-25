@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = ('public', 'title', 'text')
+        fields = ('public', 'chart_type', 'date_from', 'title', 'text')
         exclude = ('user',)
 
     def clean_text(self):
