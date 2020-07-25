@@ -10,7 +10,7 @@ from django.http import HttpResponse
 from rest_framework import viewsets
 from .models import Post
 from .serializers import PostSerializer
-
+from rest_framework.views import APIView
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('title')
