@@ -9,6 +9,16 @@
                     <div class="post_title">{{ post.title }}
                     </div>
                 </div>
+                 <div
+                    class="blog_graph"
+                    data-chart-type="{{ post.chart_type }}"
+                    data-chart-date_from="{{ post.date_from }}"
+                >
+                    <div class="chart">
+
+                    </div>
+                    <p>Loading!!!</p>
+                </div>
                 {% if post.author == user %}
                 <div class="delete-popup">
                     <p><a class="btn btn-outline-danger mr-2" href="{% url 'post_delete' pk=post.pk %}">Delete Post</a>
@@ -32,7 +42,6 @@
         <a class="btn btn-outline-primary" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment as {{request.user}}</a>
         </div>
         </div>
-        
 
             {% for comment in post.comments.all %}
 
@@ -50,6 +59,19 @@
             <p>it's very quiet in here</p>
 
             {% endfor %}
-
+    <script>
+        document.onreadystatechange = () => {
+            if (document.readyState === "complete") {
+                console.log('I WORK');
+                find_all_chart_elements();
+            };
+           // else {
+                //window.onload = function () {
+                    //console.log('I WORK');
+              //  };
+           // };
+        }
+        
+    </script>
 </div>
 {% endblock %}

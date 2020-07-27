@@ -52,7 +52,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['public', 'title', 'text']
+    fields = ['public', 'chart_type', 'date_from', 'title', 'text']
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 
