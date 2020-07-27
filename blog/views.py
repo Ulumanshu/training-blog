@@ -20,8 +20,11 @@ class PostViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Post.objects.all()
         title = self.request.query_params.get('title', None)
+        date_from = self.request.query_params.get('date_from', None)
         if title is not None:
             queryset = queryset.filter(title=title)
+        if date_from is not None:
+            queryset = queryset.filter(created_date__gte=date_from)
         return queryset
     
 
@@ -81,7 +84,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'text']
+    fields = ['public', 'chart_type', 'date_from', 'title', 'text']
     template_name = 'blog/post_edit.html'
     login_url = '/login'
 

@@ -11,13 +11,13 @@
                 </div>
                  <div
                     class="blog_graph"
-                    data-chart-type="{{ post.chart_type }}"
-                    data-chart-date_from="{{ post.date_from }}"
+                    data-chart_type="{{ post.chart_type }}"
+                    data-chart_date_from="{{ post.date_from|date:'Y-m-d' }}"
                 >
                     <div class="chart">
 
                     </div>
-                    <p>Loading!!!</p>
+                    <p id="chart_status">Loading!!!</p>
                 </div>
                 {% if post.author == user %}
                 <div class="delete-popup">
@@ -62,8 +62,8 @@
     <script>
         document.onreadystatechange = () => {
             if (document.readyState === "complete") {
-                console.log('I WORK');
-                find_all_chart_elements();
+                console.log('I WORK DETAIL');
+                draw_all_charts();
             };
            // else {
                 //window.onload = function () {
