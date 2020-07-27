@@ -34,6 +34,9 @@
                     data-chart-type="{{ post.chart_type }}"
                     data-chart-date_from="{{ post.date_from }}"
                 >
+                    <div class="chart">
+
+                    </div
                     <p>Loading!!!</p>
                 </div>
                 <div class="text">
@@ -70,6 +73,21 @@
             </div>
         </div>
     </div>
+    <script>
+        document.onreadystatechange = () => {
+            if (document.readyState === "complete") {
+                console.log('I WORK');
+                find_all_chart_elements();
+            }
+            else {
+                window.onload = function () {
+                    console.log('I WORK');
+                    //find_all_chart_elements();
+                };
+            };
+        }
+        
+    </script>
 </div>
 {% endfor %}
 {% endblock %}
